@@ -6,9 +6,14 @@ async function fetchData() {
     })
 }
 
-async function logData() {
+// async function logData() {
+//     const data = await fetchData();
+//     console.log(data);
+// }
+
+// logData();
+
+(async () => {
     const data = await fetchData();
     console.log(data);
-}
-
-logData();
+})();
