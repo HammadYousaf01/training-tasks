@@ -5,13 +5,12 @@
 // between the two dates, inclusive of the start and end dates.
 
 
-function countWeekdays(startDate, endDate) {
+function countWeekDays(startDate, endDate) {
     const timeDifferenceInMiliseconds = endDate - startDate;
     const totalDays = Math.floor(timeDifferenceInMiliseconds / (1000 * 60 * 60 * 24)) + 1;
     let totalWeekDays = 0;
 
-    const weekDayStart = startDate.getDay();
-    let weekDayRef = weekDayStart;
+    let weekDayRef = startDate.getDay();
 
     for (let i = 0; i < totalDays; i++) {
         if (weekDayRef != 6 & weekDayRef != 7) {
@@ -30,5 +29,5 @@ function countWeekdays(startDate, endDate) {
 const startDate = new Date('2023-06-05');
 const endDate = new Date('2023-07-05');
 
-const totalWeekDays = countWeekdays(startDate, endDate);
+const totalWeekDays = countWeekDays(startDate, endDate);
 console.log(totalWeekDays);

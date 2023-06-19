@@ -13,11 +13,15 @@ let excludes = [
 ];
 
 
+// const filteredItems = items.filter(item => {
+//     for (const excludeFilter of excludes) {
+//         if (item[excludeFilter['k']] === excludeFilter['v']) return false;
+//     }
+//     return true;
+// })
+
 const filteredItems = items.filter(item => {
-    for (const excludeFilter of excludes) {
-        if (item[excludeFilter['k']] === excludeFilter['v']) return false;
-    }
-    return true;
+    return !excludes.some(excludeFilter => item[excludeFilter['k']] === excludeFilter['v'])
 })
 
 console.log(filteredItems);

@@ -7,11 +7,10 @@
 
 
 function nextWeekdayAfter(startDateObj, weekDay) {
-    let startDate = startDateObj.getDate();
-    let startDay = startDateObj.getDay();
+    const startDate = startDateObj.getDate();
+    const startDay = startDateObj.getDay();
 
-    let nextWeekday = startDate + weekDay - startDay;
-    
+    const nextWeekday = startDate + weekDay - startDay;
 
     if (weekDay > startDay) {
         startDateObj.setDate(nextWeekday);
@@ -19,10 +18,11 @@ function nextWeekdayAfter(startDateObj, weekDay) {
         startDateObj.setDate(nextWeekday + 7);
     }
 
-    console.log(startDateObj)
+    return startDateObj;
 }
 
 
-let startDate = new Date();
-let weekDay = 1;
-nextWeekdayAfter(startDate, weekDay);
+const startDate = new Date();
+const weekDay = 1;
+const nextWeekday = nextWeekdayAfter(startDate, weekDay);
+console.log(nextWeekday);
