@@ -1,37 +1,36 @@
-
 const groups = [
     { name: "Group A", groupMembers: [] },
     { name: "Group B", groupMembers: [] },
     { name: "Group C", groupMembers: [] },
     { name: "Group D", groupMembers: [] },
-    { name: "Group E", groupMembers: [] },
-    { name: "Group F", groupMembers: [] },
 ]
 
 const students = [];
-for (let i = 1; i <= 16; i++) {
+for (let i = 1; i <= 10; i++) {
     students.push({id: i, name: `Student ${i}`})
 }
 
 
 function assignRandomGroupsToStudents(groups, students) {
-    randomlyReArrangeArray(groups);
-    randomlyReArrangeArray(students);
+    const studentsPerGroup = Math.floor(students.length / groups.length);
+    let extraStudents = students.length % groups.length;
 
-    let groupIndexRef = 0;
-    students.map(student => {
-        groups[groupIndexRef].groupMembers.push(student);
-    
-        if (groupIndexRef === groups.length - 1) {
-            groupIndexRef = 0;
-        } else {
-            groupIndexRef++;
+    groups.map(group => {
+        for (let i = 0; i < studentsPerGroup; i++) {
+            const randomStudent = getRandomStudent(students);
+            group.groupMembers.push(randomStudent)
         }
-    })
+
+        if (extraStudents) {
+            group.groupMembers.push(getRandomStudent(students));
+            extraStudents--;
+        }
+    });
 }
 
-function randomlyReArrangeArray(arr) {
-    arr.sort(() => Math.random() - 0.5);
+function getRandomStudent(students) {
+    const randomStudentIndex = Math.floor(Math.random() * students.length);
+    return students.splice(randomStudentIndex, 1)[0];
 }
 
 function prettyPrintGroups(groups) {
@@ -46,7 +45,6 @@ function prettyPrintGroups(groups) {
         console.log(output)
     })
 }
-
 
 assignRandomGroupsToStudents(groups, students);
 prettyPrintGroups(groups);
